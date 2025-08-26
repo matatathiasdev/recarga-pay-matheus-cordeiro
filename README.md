@@ -23,7 +23,6 @@ recarga-pay-matheus-cordeiro/
 ├── artifacts/                      # Pasta destinada a armazenar arquivos temporarios do Spark (não vercionada)
 ├── data/                           # Pasta destinada a o banco de dados DuckDB (não versionada)
 ├── datalake/                       # Pasta destinada a arquivos de dados do Spark (não versionada)
-├── hadoop/                         # Pasta destinada aos arquivos de configuracao do Hadoop
 ├── interviews_fake_transactions/   # Pasta destinada aos arquivos de base disponibilizados para RecargaPay
 └── README.md                       # Documentação principal
 ```
@@ -123,10 +122,14 @@ setx JAVA_HOME "C:\Program Files\Zulu\zulu-11"
 
 ### Hadoop
 * **Baixar o Hadoop 3.3.1**: https://github.com/cdarlint/winutils.
-* **Pasta Hadoop**: Deixei a pasta dentro do projeto para facilitar na configuracao mais nao e o idea! O mais correto era criar uma pasta em: `C:\hadoop` 
+* **Criar uma pasta no C**: `C:\hadoop`
+* **Criar uma pasta no C**: `C:\hadoop\hadoop-3.3.1`
+* **Criar uma pasta no C**: `C:\hadoop\hadoop-3.3.1\bin`
+* **Executavel**: Colocar o execultavel dentro da pasta bin `winutils.exe`
 
 
-### Instalação com `pip`
+
+### Instalação com `pip` 
 
 ```bash
 python -m venv .venv

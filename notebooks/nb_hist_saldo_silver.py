@@ -28,10 +28,9 @@ output_path = str(Path().absolute()) + '\\datalake\\silver\\historico_saldo'
 
 # SESSÃO SPARK
 # DEFININDO VARIAVEIS DE AMBIENTE
-path_hadoop = str(Path().absolute()) + '\\hadoop'
-os.environ["HADOOP_HOME"] = path_hadoop + "\\hadoop-3.3.1"
-os.environ["hadoop.home.dir"] = path_hadoop + "\\hadoop-3.3.1"
-os.environ["PATH"] += ";" + path_hadoop + "\\hadoop\hadoop-3.3.1\bin"
+os.environ["HADOOP_HOME"] = r"C:\hadoop\hadoop-3.3.1"
+os.environ["hadoop.home.dir"] = r"C:\hadoop\hadoop-3.3.1"
+os.environ["PATH"] += r";C:\hadoop\hadoop-3.3.1\bin"
 
 # INICIANDO SPARK
 spark = SparkSession.builder.appName("spark-data").getOrCreate()
