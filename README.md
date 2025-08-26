@@ -225,3 +225,5 @@ Esses testes são básicos, mas garantem o funcionamento essencial do pipeline. 
 ---
 
 ✍️ **Autor:** Matheus Rodrigues
+- [LinkedIn](https://www.linkedin.com/in/matheus-rodrigues-106319b7/)  
+- 📧 [E-mail](mailto:matheus.rodrigues_santos@hotmail.com)
