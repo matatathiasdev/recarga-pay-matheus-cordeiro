@@ -10,15 +10,81 @@ Este repositório contém a implementação de um **produto de dados** desenvolv
 recarga-pay-matheus-cordeiro/
 │
 ├── notebooks/
-│   ├── app.py              # Aplicação principal Streamlit
-│   ├── nb_duck_db.py       # Classe de integração com DuckDB
-│   ├── nb_valor_taxa.py    # Módulo para gravação e leitura de taxas
-│   └── ...                 # Outros notebooks de apoio
+│   ├── app.py                  # Aplicação principal em Streamlit
+│   ├── nb_libs.py              # Instala e garante dependências
+│   ├── nb_duck_db.py           # Classe de integração com DuckDB
+│   ├── nb_dados_brutos.py      # Ingestão de dados brutos (camada bronze)
+│   ├── nb_hist_saldo_silver.py # Processamento histórico de saldo (camada silver)
+│   ├── nb_saldo_juros_silver.py# Cálculo de juros sobre saldo (camada silver)
+│   └── nb_valor_taxa.py        # Classe para atualizar taxa de juros dinamicamente
 │
-├── requirements.txt        # Dependências do projeto
-├── README.md               # Documentação principal
-└── data/                   # Pasta destinada a arquivos de dados (não versionada)
+├── requirements.txt            # Dependências do projeto
+├── README.md                   # Documentação principal
+└── data/                       # Pasta destinada a arquivos de dados (não versionada)
 ```
+
+### 📖 Descrição dos Notebooks / Módulos
+
+#### `app.py`
+
+* Arquivo principal da aplicação.
+* Implementado em **Streamlit**, responsável por criar a interface web.
+* Permite visualizar dados processados a partir do DuckDB.
+* Possui botões para executar os scripts de ingestão e transformação (`nb_dados_brutos.py`, `nb_hist_saldo_silver.py`, `nb_saldo_juros_silver.py`).
+* Inclui um **slider** para ajustar dinamicamente a taxa de juros via `nb_valor_taxa.py`.
+* Exibe o **schema do banco** e permite executar queries SQL customizadas.
+
+#### `nb_libs.py`
+
+* Script utilitário para garantir que todas as dependências estão instaladas.
+* Instala/atualiza bibliotecas essenciais como `pandas`, `numpy`, `pyspark`, `duckdb`.
+* Executado automaticamente pelo `app.py` no início da aplicação.
+
+#### `nb_duck_db.py`
+
+* Contém a classe `DuckDB` que centraliza a integração com o banco **DuckDB**.
+* Funções principais:
+
+  * Criar banco e conectar.
+  * Executar queries (`select_from_duckdb`).
+  * Criar/atualizar tabelas com DataFrames do Spark.
+  * Gravar dados via Parquet temporário.
+  * Dropar tabelas e fechar conexões.
+* Atua como camada de persistência de dados de consumo.
+
+#### `nb_dados_brutos.py`
+
+* Responsável pela ingestão da camada **bronze**.
+* Lê arquivos **Parquet** de transações brutas (`interviews_fake_transactions`).
+* Grava os dados na estrutura de **datalake/bronze/transacoes**.
+* Persiste os dados no DuckDB na tabela `tb_transacoes`.
+* Garante a criação da pasta e substituição dos dados em execuções subsequentes.
+
+#### `nb_hist_saldo_silver.py`
+
+* Responsável por criar a camada **silver** de **histórico de saldo**.
+* Lê a camada bronze de transações.
+* Converte colunas para tipos corretos (ex: `amount`, `event_time`, `cdc_sequence_num`).
+* Cria janela particionada por `account_id` para calcular **ordenação temporal**.
+* Gera histórico de movimentações (`df_hist`).
+* Calcula **saldo acumulado** (`df_saldo`).
+* Grava saída no **datalake/silver/historico\_saldo** e no DuckDB (`tb_saldo_historico`).
+
+#### `nb_saldo_juros_silver.py`
+
+* Responsável por calcular **juros** sobre saldos (camada **silver**).
+* Lê dados do histórico de saldo (`silver/historico_saldo`).
+* Calcula tempo desde a última movimentação em horas (`hours_since_mov`).
+* Aplica taxa de juros fixa (0.01) para saldos acima de 100 e com mais de 24h sem movimentação.
+* Cria novo saldo atualizado (`updated_balance`).
+* Grava saída em **datalake/silver/saldo\_juros** e no DuckDB (`tb_saldo_juros`).
+
+#### `nb_valor_taxa.py`
+
+* Define a classe `ValorTaxa` que permite **ajustar dinamicamente** a taxa de juros.
+* Instanciada com a taxa definida pelo usuário (via Streamlit).
+* Executa o mesmo fluxo de cálculo de juros do `nb_saldo_juros_silver.py`, mas aplicando a taxa escolhida.
+* Atualiza os dados no **datalake/silver/saldo\_juros** e na tabela DuckDB `tb_saldo_juros`.
 
 ---
 
@@ -109,7 +175,7 @@ pytest -v
 
 * **Escalabilidade**: arquitetura modular que permite troca de banco (DuckDB → PostgreSQL) facilmente.
 * **Performance**: leitura em Parquet e uso de Spark para paralelismo.
-* **Manutenibilidade**: código separado em módulos (`nb_duck_db`, `nb_valor_taxa`).
+* **Manutenibilidade**: código separado em módulos para ingestão, transformação e consumo.
 
 ---
 
