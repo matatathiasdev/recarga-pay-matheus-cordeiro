@@ -19,7 +19,14 @@ import os
 warnings.filterwarnings("ignore")
 
 # TESTAR SE O WINUTILS ESTA FUNCIONANDO ANTES DE RODAR SPARK
-subprocess.run(["winutils.exe", "ls", "C:\\tmp"])
+# CAMINHO PARA O WINUTILS
+winutils_path = r"C:\hadoop\hadoop-3.3.1\bin\winutils.exe"
+
+# TESTA APENAS SE EXISTE
+if os.path.exists(winutils_path):
+    subprocess.run([winutils_path, "ls", "C:\\tmp"])
+else:
+    print("winutils.exe não encontrado. Pulando teste.")
 
 # CAMINHO
 path = str(Path().absolute()) + '\\datalake\\bronze\\transacoes'
