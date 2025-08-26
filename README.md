@@ -113,6 +113,10 @@ recarga-pay-matheus-cordeiro/
 * Streamlit >= 1.35
 
 ### Possiveis problemas
+
+#### Privilégios de usuário
+É importante garantir que o usuário tenha as permissões necessárias para executar a solução, pois algumas bibliotecas precisam ser instaladas durante o processo.
+
 #### Garante que o pip esta instalado (Caso usar o pip)
 
 ```bash
@@ -243,6 +247,9 @@ Esses testes são básicos, mas garantem o funcionamento essencial do pipeline. 
 * **Ausência de testes complexos**: devido a restrição de tempo, apenas testes básicos foram contemplados.
 
 ---
+
+## 📋 Produto
+<img src="imagens\chrome_Ez9BmFIYuh.png" alt="Texto alternativo" width="300"/>
 
 ✍️ **Autor:** Matheus Rodrigues
 - [LinkedIn](https://www.linkedin.com/in/matheus-rodrigues-106319b7/)  
