@@ -112,6 +112,24 @@ recarga-pay-matheus-cordeiro/
 * PySpark >= 3.5
 * Streamlit >= 1.35
 
+### Possiveis problemas
+#### Garante que o pip esta instalado (Caso usar o pip)
+
+```bash
+python -m ensurepip --upgrade
+```
+#### Forçar a reinstalação do Streamlit
+
+```bash
+python -m pip install --upgrade --force-reinstall streamlit --user
+```
+
+#### Instalar o duckdb caso o arquivo de requirements não o instale
+
+```bash
+python -m pip install duckdb
+```
+
 ### Spark
 
 * **Java**: Instalar Java 8 ou Java 11: https://www.azul.com/downloads/?package=jdk#download-openjdk.
@@ -126,8 +144,6 @@ setx JAVA_HOME "C:\Program Files\Zulu\zulu-11"
 * **Criar uma pasta no C**: `C:\hadoop\hadoop-3.3.1`
 * **Criar uma pasta no C**: `C:\hadoop\hadoop-3.3.1\bin`
 * **Executavel**: Colocar o execultavel dentro da pasta bin `winutils.exe`
-
-
 
 ### Instalação com `pip` 
 
