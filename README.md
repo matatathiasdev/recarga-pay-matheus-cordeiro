@@ -249,7 +249,7 @@ Esses testes são básicos, mas garantem o funcionamento essencial do pipeline. 
 ---
 
 ## 📋 Produto
-<img src="imagens\chrome_Ez9BmFIYuh.png" alt="Texto alternativo" width="300"/>
+<img src="imagens\chrome_Ez9BmFIYuh.png" alt="Texto alternativo" width="600" height="600"/>
 
 ✍️ **Autor:** Matheus Rodrigues
 - [LinkedIn](https://www.linkedin.com/in/matheus-rodrigues-106319b7/)  
