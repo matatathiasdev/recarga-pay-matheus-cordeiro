@@ -16,7 +16,8 @@ recarga-pay-matheus-cordeiro/
 │   ├── nb_dados_brutos.py      # Ingestão de dados brutos (camada bronze)
 │   ├── nb_hist_saldo_silver.py # Processamento histórico de saldo (camada silver)
 │   ├── nb_saldo_juros_silver.py# Cálculo de juros sobre saldo (camada silver)
-│   └── nb_valor_taxa.py        # Classe para atualizar taxa de juros dinamicamente
+│   ├── nb_valor_taxa.py        # Classe para atualizar taxa de juros dinamicamente
+│   └── nb_tests_notebook.py    # Notebook/script de testes automatizados simples
 │
 ├── requirements.txt            # Dependências do projeto
 ├── README.md                   # Documentação principal
@@ -86,6 +87,16 @@ recarga-pay-matheus-cordeiro/
 * Executa o mesmo fluxo de cálculo de juros do `nb_saldo_juros_silver.py`, mas aplicando a taxa escolhida.
 * Atualiza os dados no **datalake/silver/saldo\_juros** e na tabela DuckDB `tb_saldo_juros`.
 
+#### `nb_tests_notebook.py`
+
+* Contém **testes automatizados simples** para validar o pipeline.
+* Principais testes incluídos:
+
+  * Criar e consultar tabela no DuckDB.
+  * Calcular saldo acumulado com janela de partição.
+  * Executar `ValorTaxa` com taxa de 10% e validar a criação da coluna `fees`.
+* Exibe mensagens de sucesso para cada teste.
+
 ---
 
 ## ⚙️ Instalação
@@ -134,13 +145,21 @@ poetry install
 
 ## 🧪 Testes
 
-Testes simples podem ser feitos executando:
+Este projeto inclui um script/notebook de testes: `notebooks/nb_tests_notebook.py`.
+
+### Como executar os testes
 
 ```bash
-pytest -v
+python notebooks/nb_tests_notebook.py
 ```
 
-*(se os testes unitários estiverem configurados em `tests/`)*
+### Testes incluídos
+
+* **Teste DuckDB**: cria e consulta tabela `tb_teste`.
+* **Teste de saldo acumulado**: valida cálculo de saldo progressivo.
+* **Teste de juros com ValorTaxa**: aplica taxa de 10% e verifica coluna `fees`.
+
+Esses testes são básicos, mas garantem o funcionamento essencial do pipeline. Para produção, recomenda-se evoluir com `pytest` e frameworks de qualidade de dados como **Great Expectations**.
 
 ---
 
