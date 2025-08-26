@@ -115,14 +115,14 @@ recarga-pay-matheus-cordeiro/
 
 ### Spark
 
-* **Java**: Instalar Java 8 ou Java 11: `https://www.azul.com/downloads/?package=jdk#download-openjdk`.
+* **Java**: Instalar Java 8 ou Java 11: https://www.azul.com/downloads/?package=jdk#download-openjdk.
 * **Variável de ambiente do Java:** 
 ```bash
 setx JAVA_HOME "C:\Program Files\Zulu\zulu-11"
 ```
 
 ### Hadoop
-* **Baixar o Hadoop 3.3.1**: (https://github.com/cdarlint/winutils).
+* **Baixar o Hadoop 3.3.1**: https://github.com/cdarlint/winutils.
 * **Pasta Hadoop**: Deixei a pasta dentro do projeto para facilitar na configuracao mais nao e o idea! O mais correto era criar uma pasta em: `C:\hadoop` 
 
 
