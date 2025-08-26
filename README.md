@@ -10,18 +10,22 @@ Este repositório contém a implementação de um **produto de dados** desenvolv
 recarga-pay-matheus-cordeiro/
 │
 ├── notebooks/
-│   ├── app.py                  # Aplicação principal em Streamlit
-│   ├── nb_libs.py              # Instala e garante dependências
-│   ├── nb_duck_db.py           # Classe de integração com DuckDB
-│   ├── nb_dados_brutos.py      # Ingestão de dados brutos (camada bronze)
-│   ├── nb_hist_saldo_silver.py # Processamento histórico de saldo (camada silver)
-│   ├── nb_saldo_juros_silver.py# Cálculo de juros sobre saldo (camada silver)
-│   ├── nb_valor_taxa.py        # Classe para atualizar taxa de juros dinamicamente
-│   └── nb_tests_notebook.py    # Notebook/script de testes automatizados simples
+│   ├── app.py                      # Aplicação principal em Streamlit
+│   ├── nb_libs.py                  # Instala e garante dependências
+│   ├── nb_duck_db.py               # Classe de integração com DuckDB
+│   ├── nb_dados_brutos.py          # Ingestão de dados brutos (camada bronze)
+│   ├── nb_hist_saldo_silver.py     # Processamento histórico de saldo (camada silver)
+│   ├── nb_saldo_juros_silver.py    # Cálculo de juros sobre saldo (camada silver)
+│   ├── nb_valor_taxa.py            # Classe para atualizar taxa de juros dinamicamente
+│   └── nb_tests_notebook.py        # Notebook/script de testes automatizados simples
 │
-├── requirements.txt            # Dependências do projeto
-├── README.md                   # Documentação principal
-└── data/                       # Pasta destinada a arquivos de dados (não versionada)
+├── requirements.txt                # Dependências do projeto
+├── artifacts/                      # Pasta destinada a armazenar arquivos temporarios do Spark (não vercionada)
+├── data/                           # Pasta destinada a o banco de dados DuckDB (não versionada)
+├── datalake/                       # Pasta destinada a arquivos de dados do Spark (não versionada)
+├── hadoop/                         # Pasta destinada aos arquivos de configuracao do Hadoop
+├── interviews_fake_transactions/   # Pasta destinada aos arquivos de base disponibilizados para RecargaPay
+└── README.md                     # Documentação principal
 ```
 
 ### 📖 Descrição dos Notebooks / Módulos
@@ -108,6 +112,14 @@ recarga-pay-matheus-cordeiro/
 * DuckDB >= 0.9
 * PySpark >= 3.5
 * Streamlit >= 1.35
+
+### Spark
+
+* **Java**: Instalar Java 8 ou Java 11: `https://www.azul.com/downloads/?package=jdk#download-openjdk`.
+* **Variável de ambiente do Java:**: 
+```bash
+setx JAVA_HOME "C:\Program Files\Zulu\zulu-11"
+```
 
 ### Instalação com `pip`
 
