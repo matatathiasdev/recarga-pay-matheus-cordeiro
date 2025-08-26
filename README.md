@@ -147,16 +147,17 @@ poetry install
 ## ▶️ Execução
 
 1. **Configurar os dados**
-   Coloque seus arquivos de dados grandes (CSV/Parquet) na pasta `data/`.
+  Após a instalacão teremos nosso ambintes pronto para rodarmos a nossa solução, os dados geram gerados automaticamente assim que excultarmos o Streamlit com isso duas novas pasta seram criadas no respositorio:  `datalake/` e `data/`.
 
 2. **Executar o Streamlit**
+  Abra o termina no repositorio do projeto e execute o seguinte comando:
 
    ```bash
    streamlit run notebooks/app.py
    ```
 
 3. **Interface**
-   A aplicação abrirá no navegador em `http://localhost:8501`.
+  A aplicação abrirá no navegador em `http://localhost:8501`.
 
 ---
 
