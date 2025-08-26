@@ -122,7 +122,7 @@ setx JAVA_HOME "C:\Program Files\Zulu\zulu-11"
 ```
 
 ### Hadoop
-* **Baixar o Hadoop 3.3.1**: `https://github.com/cdarlint/winutils`.
+* **Baixar o Hadoop 3.3.1**: (https://github.com/cdarlint/winutils).
 * **Pasta Hadoop**: Deixei a pasta dentro do projeto para facilitar na configuracao mais nao e o idea! O mais correto era criar uma pasta em: `C:\hadoop` 
 
 
